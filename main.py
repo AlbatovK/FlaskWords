@@ -63,9 +63,6 @@ def kalik():
             'Дымок': '🌫🌫🌫',
             'Кайфануть': '⚪⚪⚪',
             'Пыхтящий': '😈😈😈',
-            'Животрепещущий': '💀💀💀',
-            'Уголёк': '🥵🥵🥵',
-            'Сижка': '🚬🚬🚬',
             'Краля': '🌝🌝🌝',
             'Пыхтун': '🥴🥴🥴',
             'Накумарить': '🙌🙌🙌',
@@ -73,7 +70,6 @@ def kalik():
             'Подымить': '😤😤😤',
             'Пыхотно': '🌚🌚🌚',
             'Крепчайшая': '💪💪💪',
-            'Задувочка': '🌬🌬🌬'
         }
         print(morph.parse('Пыхтеть'))
         freq = int(form.freq.data)
@@ -81,7 +77,7 @@ def kalik():
         res = ''
         for word in words:
             prs = morph.parse(word)[0]
-            if ('NOUN' in prs.tag or 'VERB' in prs.tag or 'ADJF' in prs.tag or 'INFN' in prs.tag) \
+            if ('NOUN' in prs.tag or 'VERB' in prs.tag or 'ADJF' in prs.tag or 'INFN' in prs.tag or 'ADV' in prs.tag) \
                     and random.randint(0, 10) in range(0, freq):
                 print(prs.tag.POS)
                 tg = prs.tag
