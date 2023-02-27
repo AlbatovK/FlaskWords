@@ -81,7 +81,7 @@ def kalik():
         for word in words:
             prs = morph.parse(word)[0]
             if ('NOUN' in prs.tag or 'VERB' in prs.tag or 'ADJF' in prs.tag or 'INFN' in prs.tag) \
-                    and random.randint(0, 10) in range(1, 6):
+                    and random.randint(0, 10) in range(1, 8):
                 print(prs.tag.POS)
                 tg = prs.tag
                 tags = [tg.POS, tg.animacy, tg.gender, tg.number, tg.involvement, tg.case, tg.aspect, tg.mood,
