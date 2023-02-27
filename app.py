@@ -1,3 +1,4 @@
+import os
 import random
 from random import choice
 
@@ -162,4 +163,4 @@ def success():
 
 
 if '__main__' == __name__:
-    app.run(port=8080, host='0.0.0.0')
+    app.run(debug=True, port=os.getenv("PORT", default=5000), host='0.0.0.0')
