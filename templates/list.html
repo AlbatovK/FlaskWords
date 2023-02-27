@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% set prof_list = ['Инженер', 'Строитель', 'Ещё кто-то'] %}
+
+{% if tag == 'ul' %}
+<ul>
+    {% for prof in prof_list %}
+    <li>
+        {{ prof }}
+    </li>
+    {% endfor %}
+</ul>
+{% elif tag == 'ol' %}
+<ol>
+    {% for prof in prof_list %}
+    <li>
+        {{ prof }}
+    </li>
+    {% endfor %}
+</ol>
+{% endif %}
+{% endblock %}

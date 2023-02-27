@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if form != None %}
+<form action="" method="post" novalidate>
+    <div>
+        {{ form.csrf_token }}
+    </div>
+    {% for field in form if field.name != 'csrf_token' %}
+    <div>
+        {{ field.label() }}
+        {{ field() }}
+        {% for error in field.errors %}
+        <div class="error">{{ error }}</div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</form>
+{% else %}
+{% for arg in args %}
+<div>
+    {{ arg.capitalize() }}: {{ args[arg] }}
+</div>
+{% endfor %}
+{% endif %}
+{% endblock %}

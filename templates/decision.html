@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="" method="post" novalidate>
+    <span>
+        <img name="emblem" src="https://yastatic.net/s3/lyceum/content/images/second-year/web/MARS-2-7.png">
+        Аварийный доступ
+    </span>
+    <div>
+        {{ form.csrf_token }}
+    </div>
+    {% for field in form if field.name != 'csrf_token' %}
+    <div>
+        {{ field.label() }}
+        {{ field() }}
+        {% for error in field.errors %}
+        <div class="error">{{ error }}</div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</form>
+{% endblock %}

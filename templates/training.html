@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>
+    {% if 'инженер' in prof.lower() or 'строитель' in prof.lower() %}
+    Инженерные тренажёры
+    <img src="https://stroitelstvo.madpo.ru/upload/medialibrary/61a/%D0%98%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%20%D0%9F%D0%A2%D0%9E.jpg" />
+    {% else %}
+    Научные симуляторы
+    <img src="https://discover24.ru/wp-content/uploads/2020/09/1-392.jpg" />
+    {% endif %}
+
+</h1>
+{% endblock %}
