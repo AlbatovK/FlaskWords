@@ -3,14 +3,38 @@ import random
 from random import choice
 
 from flask import Flask, render_template, redirect
+from mendeleev import element
 from pymorphy2 import MorphAnalyzer
 
 from CoalForm import CoalForm
+from InputForm import InputForm
 from decision_form import DecisionForm
 from question_form import QuestionForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandex_lyceum_secret_key'
+
+
+@app.route('/mass_defect', methods=['GET', 'POST'])
+def get_mass_defect():
+    form = InputForm()
+    if form.validate_on_submit():
+        atom = element(form.formula.data)
+        mass = float(form.isotope_mass.data) if form.isotope_mass.data else atom.mass
+        protons, neutrons = atom.protons, round(mass) - atom.protons
+
+        print(protons, neutrons, mass)
+
+        mass_defect = abs(protons * 1.007276 + neutrons * 1.008665 - mass)
+        energy_defect = mass_defect * 931.5
+        energy_per_nucleon = energy_defect / (atom.protons + atom.neutrons)
+
+        print(mass_defect, energy_defect, energy_per_nucleon)
+
+        return render_template('info_done.html', mass_defect=mass_defect, energy_defect=energy_defect,
+                               energy_per_nucleon=energy_per_nucleon)
+
+    return render_template('info_form.html', form=form)
 
 
 @app.route('/<title>')
@@ -155,4 +179,4 @@ def success():
 
 
 if '__main__' == __name__:
-    app.run(debug=True, port=os.getenv("PORT", default=5000), host='0.0.0.0')
+    app.run(debug=False, port=os.getenv("PORT", default=5000), host='0.0.0.0')
